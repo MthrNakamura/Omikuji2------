@@ -153,9 +153,8 @@ BOOL isFrontCamera = YES;
     
     if (![delegate.qrErrorCode isEqualToString:@"0000"]) {
         //QRコードエラーページに遷移
-        delegate.printErrorUrl = delegate.afterMovieURL;
-        PrinterErrorViewController *printErrorView = [self.storyboard instantiateViewControllerWithIdentifier:@"PrinterErrorView"];
-        [self presentViewController:printErrorView animated:YES completion:nil];
+        ResultViewController *resultView = [self.storyboard instantiateViewControllerWithIdentifier:@"ResultView"];
+        [self presentViewController:resultView animated:YES completion:nil];
         return ;
     }
     
@@ -309,6 +308,7 @@ BOOL isFrontCamera = YES;
         if (error.code == NSURLErrorTimedOut) {
             //タイムアウト
             AlertUtil::showAlert(_ALERT_TITLE[STATUS_ACTION], AlertUtil::TIMEDOUT);
+            validQR = NO;
         }
         else {
             //通信エラー

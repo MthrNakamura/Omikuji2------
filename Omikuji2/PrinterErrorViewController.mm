@@ -91,7 +91,7 @@ static NSString *const _ALERT_TITLE[] =
 {
     [super viewDidAppear:animated];
     
-    [self miscomplete:delegate.qrErrorCode];
+    [self miscomplete:delegate.pError];
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
@@ -139,7 +139,6 @@ static NSString *const _ALERT_TITLE[] =
     NSData *json = [NSJSONSerialization dataWithJSONObject:param options:0 error:&error];
     [request setHTTPBody:json];
     
-    NSLog(@"sent: %@", (printErrorCode == 0)?@"正常":@"エラー");
     
     return request;
 }

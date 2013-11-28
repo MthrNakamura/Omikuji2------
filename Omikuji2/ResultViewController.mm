@@ -27,6 +27,7 @@
 
 
 BOOL validRequest;
+
 //NSTimer *timer;
 
 // --- プリンタステータス ---
@@ -100,10 +101,12 @@ static NSString *const _ALERT_TITLE[] =
     //RELOAD_INTERVAL秒後に自動的にTopViewに戻る
     //timer = [NSTimer scheduledTimerWithTimeInterval:RELOAD_INTERVAL target:self selector:@selector(gobackToTopView) userInfo:Nil repeats:YES];
 
+    
     //透明のwebViewを表示
     //まずはHTMLをダウンロード
     self.webView.delegate = self;
     validRequest = YES;
+    
     NSURL * url = [[NSURL alloc] initWithString:delegate.afterMovieURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [NSURLConnection connectionWithRequest:request delegate:self];
@@ -180,6 +183,9 @@ static NSString *const _ALERT_TITLE[] =
             //印刷にエラーがあった
             else {
                 
+                //印刷にエラーがあったことをサーバーに伝える
+                [self miscomplete:delegate.pError];
+                
                 @synchronized ( self ) {
                     if ( isViewDidApper ) [self gotoErrorPage];
                     else wantGoToErrorPage = YES;
@@ -191,7 +197,7 @@ static NSString *const _ALERT_TITLE[] =
    if ([url isEqualToString:delegate.topURL]) {
        //正常に行われたことをサーバーに伝える
        //サーバーからのレスポンスで、バーコードに問題があれば抽選結果画面を表示したままにする
-       [self complete];
+       //[self complete];
        
        
         //待受け画面に戻る
@@ -262,7 +268,7 @@ static NSString *const _ALERT_TITLE[] =
     NSMutableURLRequest *request = [self createCompleteRequest:delegate.qrResult printResult:0 printErrorCode:nil];
     
     AsyncURLConnection *conn = [[AsyncURLConnection alloc]initWithRequest:request timeoutSec:TIMEOUT_INTERVAL completeBlock:^(AsyncURLConnection *conn, NSData *data) {
-
+        NSLog(@"成功");
         
         // ステータスコードの取得
         auto http_response = (NSHTTPURLResponse *)conn.response;
@@ -308,6 +314,8 @@ static NSString *const _ALERT_TITLE[] =
     NSMutableURLRequest *request = [self createCompleteRequest:delegate.qrResult printResult:1 printErrorCode:errorCode];
     
     AsyncURLConnection *conn = [[AsyncURLConnection alloc]initWithRequest:request timeoutSec:TIMEOUT_INTERVAL completeBlock:^(AsyncURLConnection *conn, NSData *data) {
+        
+        NSLog(@"四杯");
         
         // ステータスコードの取得
         auto http_response = (NSHTTPURLResponse *)conn.response;
@@ -487,7 +495,12 @@ static NSString *const _ALERT_TITLE[] =
             condition = _PRINTER_STATUS[STATUS_UNUSUALDATA];
         }
         else if (status.voltageError  == SM_TRUE) {
+            delegate.printErrorUrl = delegate.powerErrorURL;
             condition = _PRINTER_STATUS[STATUS_POWERERROR];
+        }
+        else if (status.receiptPaperEmpty == SM_TRUE ) {
+            delegate.printErrorUrl = delegate.paperEmptyURL;
+            condition = _PRINTER_STATUS[STATUS_PAPEREMPTY];
         }
         
     }
@@ -502,7 +515,7 @@ static NSString *const _ALERT_TITLE[] =
 }
 
 //Bluetoothプリンタに印刷用コマンドを送信する
-- (void)sendCommand:(NSData *)commandToPrint portName:(NSString *)portName portSettings:(NSString *)portSettings timeoutMillis:(u_int32_t)timeoutMillis
+- (BOOL)sendCommand:(NSData *)commandToPrint portName:(NSString *)portName portSettings:(NSString *)portSettings timeoutMillis:(u_int32_t)timeoutMillis
 {
     int commandSize = [commandToPrint length];
     unsigned char *dataToSentToPrinter = (unsigned char *)malloc(commandSize);
@@ -515,7 +528,7 @@ static NSString *const _ALERT_TITLE[] =
         {
             AlertUtil::showAlert(_ALERT_TITLE[STATUS_PRINT], @"プリンタに接続できませんでした。管理者にご連絡ください。");
             
-            return;
+            return NO;
         }
         
         StarPrinterStatus_2 status;
@@ -545,26 +558,31 @@ static NSString *const _ALERT_TITLE[] =
             
             AlertUtil::showAlert(_ALERT_TITLE[STATUS_PRINT], @"タイムアウトです。再度お試しください。");
 
-            
+            return NO;
         }
         
         [starPort endCheckedBlock:&status :2];
         if (status.offline == SM_TRUE) {
             AlertUtil::showAlert(_ALERT_TITLE[STATUS_PRINT], @"プリンタに接続できませんでした。管理者にご連絡ください。");
+            
+            return NO;
         }
     }
     @catch (PortException *exception)
     {
         AlertUtil::showAlert(_ALERT_TITLE[STATUS_PRINT], @"タイムアウトです。再度お試しください。");
+        
+        return NO;
     }
     @finally
     {
         free(dataToSentToPrinter);
         [SMPort releasePort:starPort];
     }
+    return YES;
 }
 
-- (void)PrintImageWithPortname:(NSString *)portName portSettings:(NSString*)portSettings imageToPrint:(UIImage*)imageToPrint maxWidth:(int)maxWidth compressionEnable:(BOOL)compressionEnable withDrawerKick:(BOOL)drawerKick
+- (BOOL)PrintImageWithPortname:(NSString *)portName portSettings:(NSString*)portSettings imageToPrint:(UIImage*)imageToPrint maxWidth:(int)maxWidth compressionEnable:(BOOL)compressionEnable withDrawerKick:(BOOL)drawerKick
 {
     RasterDocument *rasterDoc = [[RasterDocument alloc] initWithDefaults:RasSpeed_Medium endOfPageBehaviour:RasPageEndMode_FeedAndFullCut endOfDocumentBahaviour:RasPageEndMode_FeedAndFullCut topMargin:RasTopMargin_Standard pageLength:0 leftMargin:0 rightMargin:0];
     StarBitmap *starbitmap = [[StarBitmap alloc] initWithUIImage:imageToPrint :maxWidth :false];
@@ -585,7 +603,8 @@ static NSString *const _ALERT_TITLE[] =
     }
     
    
-    [self sendCommand:commandsToPrint portName:portName portSettings:portSettings timeoutMillis:10000];
+    return [self sendCommand:commandsToPrint portName:portName portSettings:portSettings timeoutMillis:10000];
+    
 }
 
 - (BOOL)prefersStatusBarHidden {return YES;}
@@ -594,17 +613,29 @@ static NSString *const _ALERT_TITLE[] =
 - (void)PrintRasterSampleReceipt3InchWithPortname//:(NSString *)portName portSettings:(NSString *)portSettings
 {
     
+    BOOL success = YES;
+    
     if (!delegate.receiptImage) {
         AlertUtil::showAlert(_ALERT_TITLE[STATUS_PRINT], @"レシートの取得に失敗したました。再度お試しください。");
+        success = NO;
     }
     
+    if (success) {
+        
     // レシートイメージを180度回転させる
     UIImage *rotImage = [self imageRotatedByRadians:M_PI image:delegate.receiptImage width:delegate.receiptImage.size.width height:delegate.receiptImage.size.height];
         delegate.receiptImage = [UIImage imageWithCGImage:delegate.receiptImage.CGImage scale:delegate.receiptImage.scale orientation:UIImageOrientationRight];
 
     //印刷を実行
-    [self PrintImageWithPortname:DEFAULT_PORTNAME portSettings:@"" imageToPrint:rotImage maxWidth:RECEIPT_WIDTH2 compressionEnable:YES withDrawerKick:YES];
+        success = [self PrintImageWithPortname:DEFAULT_PORTNAME portSettings:@"" imageToPrint:rotImage maxWidth:RECEIPT_WIDTH2 compressionEnable:YES withDrawerKick:YES];
+    }
     
+    if (success ) {
+        [self complete];
+    }
+    else {
+        [self miscomplete:@"999"];
+    }
 }
 
 

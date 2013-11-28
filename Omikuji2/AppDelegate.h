@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-//#define PRODUCTION    // 本番環境?
+#define PRODUCTION    // 本番環境?
 
 #ifdef PRODUCTION
 // 本番環境設定
@@ -23,7 +23,7 @@
 #define LOT_API @"http://mdh.fm/btapi/serial/lot/action"
 #define COMPLETE_API @"http://mdh.fm/btapi/serial/lot/complete"
 
-#define VERSION_INFO @"0.2.5"
+#define VERSION_INFO @"1.0.5"
 
 #else
 // テスト環境設定

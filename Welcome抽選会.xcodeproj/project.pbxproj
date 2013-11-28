@@ -441,7 +441,7 @@
 				ORGANIZATIONNAME = com.self.planningdev;
 				TargetAttributes = {
 					D23A76C718197E0C00C6438F = {
-						DevelopmentTeam = PQBY9BC9WR;
+						DevelopmentTeam = KNMY5SA8RR;
 					};
 					D23A76E818197E0D00C6438F = {
 						TestTargetID = D23A76C718197E0C00C6438F;
