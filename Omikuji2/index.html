@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title>fotuneteller</title>
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script>
+	    $(function(){
+	    
+	    	//ログイン時にサーバーに問い合わせてSingle Appモードにするかを聞く
+	    	//今のところ一定の返答しかしない
+	    	$.ajax({
+				type : 'post',
+				url : 'qrlink.php',
+				data : {
+					'pd': 'single'
+				},
+				success : function(data) {
+					console.log(data);
+				}
+			});
+	    
+	    
+		    $('.QRLink').click(function(e){
+			    $.ajax({
+				    type : 'post',
+				    url : 'qrlink.php',
+				    data : {
+					    'pd': 'hello'
+				    },
+				    success : function(data) {
+					    console.log(data);
+				    }
+			    });
+		    });
+	    });
+    </script>
+  </head>
+  <body>
+    <h1>おみくじ</h1>
+    <a href='transQR.html' class='QRLink'>QR読み込み</a>
+    <br><br>
+    <a href='gotoTop.html'>Topへもどる</a>
+  </body>
+</html>
+

@@ -1,0 +1,725 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Omikuji2/PrinterErrorViewController.mm"
+            timestampString = "407311138.211066"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "-webView:shouldStartLoadWithRequest:navigationType:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Omikuji2/ResultViewController.mm"
+            timestampString = "407311138.211066"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "432"
+            endingLineNumber = "432"
+            landmarkName = "-createCompleteRequest:printResult:printErrorCode:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[ResultViewController createCompleteRequest:printResult:printErrorCode:]"
+                  moduleName = "Welcome&#25277;&#36984;&#20250;"
+                  urlString = "file:///Users/motohiro/Develop/Omikuji2%20%E3%81%AE%E3%82%B3%E3%83%92%E3%82%9A%E3%83%BC/Omikuji2/ResultViewController.mm"
+                  timestampString = "407306385.679126"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "436"
+                  endingLineNumber = "436"
+                  offsetFromSymbolStart = "552">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[ResultViewController createCompleteRequest:printResult:printErrorCode:]"
+                  moduleName = "Welcome&#25277;&#36984;&#20250;"
+                  urlString = "file:///Users/motohiro/Develop/Omikuji2%20%E3%81%AE%E3%82%B3%E3%83%92%E3%82%9A%E3%83%BC/Omikuji2/ResultViewController.mm"
+                  timestampString = "407306385.679371"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "436"
+                  endingLineNumber = "436"
+                  offsetFromSymbolStart = "1224">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[ResultViewController createCompleteRequest:printResult:printErrorCode:]"
+                  moduleName = "Welcome&#25277;&#36984;&#20250;"
+                  urlString = "file:///Users/motohiro/Develop/Omikuji2%20%E3%81%AE%E3%82%B3%E3%83%92%E3%82%9A%E3%83%BC/Omikuji2/ResultViewController.mm"
+                  timestampString = "407306385.679584"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "436"
+                  endingLineNumber = "436"
+                  offsetFromSymbolStart = "1426">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Omikuji2/ResultViewController.mm"
+            timestampString = "407311138.211066"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "268"
+            endingLineNumber = "268"
+            landmarkName = "-complete"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Omikuji2/TopViewController.m"
+            timestampString = "407307293.46494"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Omikuji2/ResultViewController.mm"
+            timestampString = "407311138.211066"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "265"
+            endingLineNumber = "265"
+            landmarkName = "-complete"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__32-[ResultViewController complete]_block_invoke"
+                  moduleName = "Welcome&#25277;&#36984;&#20250;"
+                  urlString = "file:///Users/motohiro/Develop/Omikuji2%20%E3%81%AE%E3%82%B3%E3%83%92%E3%82%9A%E3%83%BC/Omikuji2/ResultViewController.mm"
+                  timestampString = "407307784.271105"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "269"
+                  endingLineNumber = "269"
+                  offsetFromSymbolStart = "144">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__32-[ResultViewController complete]_block_invoke"
+                  moduleName = "Welcome&#25277;&#36984;&#20250;"
+                  urlString = "file:///Users/motohiro/Develop/Omikuji2%20%E3%81%AE%E3%82%B3%E3%83%92%E3%82%9A%E3%83%BC/Omikuji2/ResultViewController.mm"
+                  timestampString = "407307784.271508"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "269"
+                  endingLineNumber = "269"
+                  offsetFromSymbolStart = "476">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Omikuji2/ResultViewController.mm"
+            timestampString = "407311138.211066"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
+            landmarkName = "-webView:shouldStartLoadWithRequest:navigationType:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Omikuji2/ResultViewController.mm"
+            timestampString = "407311138.211066"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "264"
+            endingLineNumber = "264"
+            landmarkName = "-complete"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[ResultViewController complete]"
+                  moduleName = "Welcome&#25277;&#36984;&#20250;"
+                  urlString = "file:///Users/motohiro/Develop/Omikuji2%20%E3%81%AE%E3%82%B3%E3%83%92%E3%82%9A%E3%83%BC/Omikuji2/ResultViewController.mm"
+                  timestampString = "407309545.024164"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "267"
+                  endingLineNumber = "267"
+                  offsetFromSymbolStart = "344">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[ResultViewController complete]"
+                  moduleName = "Welcome&#25277;&#36984;&#20250;"
+                  urlString = "file:///Users/motohiro/Develop/Omikuji2%20%E3%81%AE%E3%82%B3%E3%83%92%E3%82%9A%E3%83%BC/Omikuji2/ResultViewController.mm"
+                  timestampString = "407309545.024476"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "267"
+                  endingLineNumber = "267"
+                  offsetFromSymbolStart = "710">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__32-[ResultViewController complete]_block_invoke"
+                  moduleName = "Welcome&#25277;&#36984;&#20250;"
+                  urlString = "file:///Users/motohiro/Develop/Omikuji2%20%E3%81%AE%E3%82%B3%E3%83%92%E3%82%9A%E3%83%BC/Omikuji2/ResultViewController.mm"
+                  timestampString = "407309545.024788"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "267"
+                  endingLineNumber = "267"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__32-[ResultViewController complete]_block_invoke"
+                  moduleName = "Welcome&#25277;&#36984;&#20250;"
+                  urlString = "file:///Users/motohiro/Develop/Omikuji2%20%E3%81%AE%E3%82%B3%E3%83%92%E3%82%9A%E3%83%BC/Omikuji2/ResultViewController.mm"
+                  timestampString = "407309545.02509"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "267"
+                  endingLineNumber = "267"
+                  offsetFromSymbolStart = "122">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Omikuji2/ViewController.mm"
+            timestampString = "407312194.285393"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
+            landmarkName = "-captureResult:result:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[ViewController captureResult:result:]"
+                  moduleName = "Welcome&#25277;&#36984;&#20250;"
+                  urlString = "file:///Users/motohiro/Develop/Omikuji2%20%E3%81%AE%E3%82%B3%E3%83%92%E3%82%9A%E3%83%BC/Omikuji2/ViewController.mm"
+                  timestampString = "407312209.82519"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "144"
+                  endingLineNumber = "144"
+                  offsetFromSymbolStart = "290">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[ViewController captureResult:result:]"
+                  moduleName = "Welcome&#25277;&#36984;&#20250;"
+                  urlString = "file:///Users/motohiro/Develop/Omikuji2%20%E3%81%AE%E3%82%B3%E3%83%92%E3%82%9A%E3%83%BC/Omikuji2/ViewController.mm"
+                  timestampString = "407312209.825657"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "144"
+                  endingLineNumber = "144"
+                  offsetFromSymbolStart = "1792">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Omikuji2/ViewController.mm"
+            timestampString = "407312265.406732"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
+            landmarkName = "-captureResult:result:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[ViewController captureResult:result:]"
+                  moduleName = "Welcome&#25277;&#36984;&#20250;"
+                  urlString = "file:///Users/motohiro/Develop/Omikuji2%20%E3%81%AE%E3%82%B3%E3%83%92%E3%82%9A%E3%83%BC/Omikuji2/ViewController.mm"
+                  timestampString = "407312561.429864"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "156"
+                  endingLineNumber = "156"
+                  offsetFromSymbolStart = "662">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[ViewController captureResult:result:]"
+                  moduleName = "Welcome&#25277;&#36984;&#20250;"
+                  urlString = "file:///Users/motohiro/Develop/Omikuji2%20%E3%81%AE%E3%82%B3%E3%83%92%E3%82%9A%E3%83%BC/Omikuji2/ViewController.mm"
+                  timestampString = "407312561.430325"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "156"
+                  endingLineNumber = "156"
+                  offsetFromSymbolStart = "1734">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Omikuji2/ViewController.mm"
+            timestampString = "407312266.926673"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
+            landmarkName = "-captureResult:result:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[ViewController captureResult:result:]"
+                  moduleName = "Welcome&#25277;&#36984;&#20250;"
+                  urlString = "file:///Users/motohiro/Develop/Omikuji2%20%E3%81%AE%E3%82%B3%E3%83%92%E3%82%9A%E3%83%BC/Omikuji2/ViewController.mm"
+                  timestampString = "407312266.931506"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "163"
+                  endingLineNumber = "163"
+                  offsetFromSymbolStart = "910">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[ViewController captureResult:result:]"
+                  moduleName = "Welcome&#25277;&#36984;&#20250;"
+                  urlString = "file:///Users/motohiro/Develop/Omikuji2%20%E3%81%AE%E3%82%B3%E3%83%92%E3%82%9A%E3%83%BC/Omikuji2/ViewController.mm"
+                  timestampString = "407312266.931863"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "163"
+                  endingLineNumber = "163"
+                  offsetFromSymbolStart = "1680">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Omikuji2/PrinterErrorViewController.mm"
+            timestampString = "407312313.898699"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[PrinterErrorViewController viewDidLoad]"
+                  moduleName = "Welcome&#25277;&#36984;&#20250;"
+                  urlString = "file:///Users/motohiro/Develop/Omikuji2%20%E3%81%AE%E3%82%B3%E3%83%92%E3%82%9A%E3%83%BC/Omikuji2/PrinterErrorViewController.mm"
+                  timestampString = "407312313.905855"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "85"
+                  endingLineNumber = "85"
+                  offsetFromSymbolStart = "318">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[PrinterErrorViewController viewDidLoad]"
+                  moduleName = "Welcome&#25277;&#36984;&#20250;"
+                  urlString = "file:///Users/motohiro/Develop/Omikuji2%20%E3%81%AE%E3%82%B3%E3%83%92%E3%82%9A%E3%83%BC/Omikuji2/PrinterErrorViewController.mm"
+                  timestampString = "407312313.906142"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "85"
+                  endingLineNumber = "85"
+                  offsetFromSymbolStart = "722">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Omikuji2/PrinterErrorViewController.mm"
+            timestampString = "407312398.82134"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
+            landmarkName = "-createCompleteRequest:printResult:printErrorCode:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[PrinterErrorViewController createCompleteRequest:printResult:printErrorCode:]"
+                  moduleName = "Welcome&#25277;&#36984;&#20250;"
+                  urlString = "file:///Users/motohiro/Develop/Omikuji2%20%E3%81%AE%E3%82%B3%E3%83%92%E3%82%9A%E3%83%BC/Omikuji2/PrinterErrorViewController.mm"
+                  timestampString = "407313045.580464"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "135"
+                  endingLineNumber = "135"
+                  offsetFromSymbolStart = "570">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[PrinterErrorViewController createCompleteRequest:printResult:printErrorCode:]"
+                  moduleName = "Welcome&#25277;&#36984;&#20250;"
+                  urlString = "file:///Users/motohiro/Develop/Omikuji2%20%E3%81%AE%E3%82%B3%E3%83%92%E3%82%9A%E3%83%BC/Omikuji2/PrinterErrorViewController.mm"
+                  timestampString = "407313045.580748"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "135"
+                  endingLineNumber = "135"
+                  offsetFromSymbolStart = "1346">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[PrinterErrorViewController createCompleteRequest:printResult:printErrorCode:]"
+                  moduleName = "Welcome&#25277;&#36984;&#20250;"
+                  urlString = "file:///Users/motohiro/Develop/Omikuji2%20%E3%81%AE%E3%82%B3%E3%83%92%E3%82%9A%E3%83%BC/Omikuji2/PrinterErrorViewController.mm"
+                  timestampString = "407313045.58105"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "135"
+                  endingLineNumber = "135"
+                  offsetFromSymbolStart = "1568">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Omikuji2/PrinterErrorViewController.mm"
+            timestampString = "407312400.346349"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
+            landmarkName = "-createCompleteRequest:printResult:printErrorCode:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[PrinterErrorViewController createCompleteRequest:printResult:printErrorCode:]"
+                  moduleName = "Welcome&#25277;&#36984;&#20250;"
+                  urlString = "file:///Users/motohiro/Develop/Omikuji2%20%E3%81%AE%E3%82%B3%E3%83%92%E3%82%9A%E3%83%BC/Omikuji2/PrinterErrorViewController.mm"
+                  timestampString = "407313045.581425"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "136"
+                  endingLineNumber = "136"
+                  offsetFromSymbolStart = "782">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[PrinterErrorViewController createCompleteRequest:printResult:printErrorCode:]"
+                  moduleName = "Welcome&#25277;&#36984;&#20250;"
+                  urlString = "file:///Users/motohiro/Develop/Omikuji2%20%E3%81%AE%E3%82%B3%E3%83%92%E3%82%9A%E3%83%BC/Omikuji2/PrinterErrorViewController.mm"
+                  timestampString = "407313045.581714"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "136"
+                  endingLineNumber = "136"
+                  offsetFromSymbolStart = "1558">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Omikuji2/PrinterErrorViewController.mm"
+            timestampString = "407312462.111264"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
+            landmarkName = "-createCompleteRequest:printResult:printErrorCode:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[PrinterErrorViewController createCompleteRequest:printResult:printErrorCode:]"
+                  moduleName = "Welcome&#25277;&#36984;&#20250;"
+                  urlString = "file:///Users/motohiro/Develop/Omikuji2%20%E3%81%AE%E3%82%B3%E3%83%92%E3%82%9A%E3%83%BC/Omikuji2/PrinterErrorViewController.mm"
+                  timestampString = "407313045.58205"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "137"
+                  endingLineNumber = "137"
+                  offsetFromSymbolStart = "872">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[PrinterErrorViewController createCompleteRequest:printResult:printErrorCode:]"
+                  moduleName = "Welcome&#25277;&#36984;&#20250;"
+                  urlString = "file:///Users/motohiro/Develop/Omikuji2%20%E3%81%AE%E3%82%B3%E3%83%92%E3%82%9A%E3%83%BC/Omikuji2/PrinterErrorViewController.mm"
+                  timestampString = "407313045.582321"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "137"
+                  endingLineNumber = "137"
+                  offsetFromSymbolStart = "1548">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Omikuji2/PrinterErrorViewController.mm"
+            timestampString = "407312473.971872"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
+            landmarkName = "-createCompleteRequest:printResult:printErrorCode:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[PrinterErrorViewController createCompleteRequest:printResult:printErrorCode:]"
+                  moduleName = "Welcome&#25277;&#36984;&#20250;"
+                  urlString = "file:///Users/motohiro/Develop/Omikuji2%20%E3%81%AE%E3%82%B3%E3%83%92%E3%82%9A%E3%83%BC/Omikuji2/PrinterErrorViewController.mm"
+                  timestampString = "407313045.582682"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "138"
+                  endingLineNumber = "138"
+                  offsetFromSymbolStart = "938">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[PrinterErrorViewController createCompleteRequest:printResult:printErrorCode:]"
+                  moduleName = "Welcome&#25277;&#36984;&#20250;"
+                  urlString = "file:///Users/motohiro/Develop/Omikuji2%20%E3%81%AE%E3%82%B3%E3%83%92%E3%82%9A%E3%83%BC/Omikuji2/PrinterErrorViewController.mm"
+                  timestampString = "407313045.583052"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "138"
+                  endingLineNumber = "138"
+                  offsetFromSymbolStart = "1538">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Omikuji2/PrinterErrorViewController.mm"
+            timestampString = "407312479.962069"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "-createCompleteRequest:printResult:printErrorCode:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[PrinterErrorViewController createCompleteRequest:printResult:printErrorCode:]"
+                  moduleName = "Welcome&#25277;&#36984;&#20250;"
+                  urlString = "file:///Users/motohiro/Develop/Omikuji2%20%E3%81%AE%E3%82%B3%E3%83%92%E3%82%9A%E3%83%BC/Omikuji2/PrinterErrorViewController.mm"
+                  timestampString = "407313045.583293"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "139"
+                  endingLineNumber = "139"
+                  offsetFromSymbolStart = "1004">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[PrinterErrorViewController createCompleteRequest:printResult:printErrorCode:]"
+                  moduleName = "Welcome&#25277;&#36984;&#20250;"
+                  urlString = "file:///Users/motohiro/Develop/Omikuji2%20%E3%81%AE%E3%82%B3%E3%83%92%E3%82%9A%E3%83%BC/Omikuji2/PrinterErrorViewController.mm"
+                  timestampString = "407313045.583493"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "139"
+                  endingLineNumber = "139"
+                  offsetFromSymbolStart = "1526">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Omikuji2/PrinterErrorViewController.mm"
+            timestampString = "407312734.711974"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "-viewDidAppear:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[PrinterErrorViewController viewDidAppear:]"
+                  moduleName = "Welcome&#25277;&#36984;&#20250;"
+                  urlString = "file:///Users/motohiro/Develop/Omikuji2%20%E3%81%AE%E3%82%B3%E3%83%92%E3%82%9A%E3%83%BC/Omikuji2/PrinterErrorViewController.mm"
+                  timestampString = "407312787.210964"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "94"
+                  endingLineNumber = "94"
+                  offsetFromSymbolStart = "82">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[PrinterErrorViewController viewDidAppear:]"
+                  moduleName = "Welcome&#25277;&#36984;&#20250;"
+                  urlString = "file:///Users/motohiro/Develop/Omikuji2%20%E3%81%AE%E3%82%B3%E3%83%92%E3%82%9A%E3%83%BC/Omikuji2/PrinterErrorViewController.mm"
+                  timestampString = "407312787.211247"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "94"
+                  endingLineNumber = "94"
+                  offsetFromSymbolStart = "256">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

@@ -7,8 +7,29 @@
 //
 
 #import "AppDelegate.h"
+#import "Reachability.h"
 
 @implementation AppDelegate
+@synthesize loggedOut;
+@synthesize accessToken;
+@synthesize singleAppMode;
+@synthesize contentsList;
+@synthesize movieId;
+@synthesize topURL;
+@synthesize qrURL;
+@synthesize resultURL;
+@synthesize resultMovieId;
+@synthesize afterMovieURL;
+@synthesize printInfo;
+@synthesize soundId;
+@synthesize drawerOpenURL, failedCutURL, headerTempURL, paperJammedURL, unusualDataURL, powerErrorURL, paperEmptyURL, pairingUrl;
+@synthesize qrErrorMsg, qrResult;
+@synthesize receiptImage;
+@synthesize printErrorUrl;
+@synthesize receiptLoaded;
+@synthesize qrErrorCode;
+@synthesize numLoop;
+@synthesize pError;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -41,6 +62,24 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+
+- (int)checkNetworkStatus
+{
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus status = [reachability currentReachabilityStatus];
+    
+    switch (status) {
+        case NotReachable:
+            return NO_NETWORK;
+        case ReachableViaWWAN:
+            return NETWORK_3G;
+        case ReachableViaWiFi:
+            return NETWORK_WIFI;
+        default:
+            return -1;
+    }
 }
 
 @end
