@@ -43,17 +43,22 @@ float loadedBytes;
     
     delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
  
-    NSLog(@"numloop: %d", delegate.numLoop);
-    if (delegate.numLoop >= NUM_LOOP) {
-        exit(0);
-        return ;
-    }
+    
     
     if (delegate.qrErrorMsg != nil) {
         NSString *error = delegate.qrErrorMsg;
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"QR読み込みエラー" message:error delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
         delegate.qrErrorMsg = nil;
+    }
+    
+    NSLog(@"numloop: %d", delegate.numLoop);
+    if (delegate.numLoop >= NUM_LOOP) {
+        
+//        while (delegate.networking)
+//            usleep(100);
+        exit(0);
+        return ;
     }
     
     //TOP画面のwebページを表示
@@ -72,6 +77,8 @@ float loadedBytes;
     //定期更新確認を設定
     //[NSTimer scheduledTimerWithTimeInterval:UPDATE_INTERVAL target:self selector:@selector(checkUpdate:) userInfo:nil repeats:YES];
 
+    
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated

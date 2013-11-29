@@ -30,6 +30,9 @@
 @synthesize qrErrorCode;
 @synthesize numLoop;
 @synthesize pError;
+@synthesize networking;
+@synthesize alertView;
+@synthesize showingAlert;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

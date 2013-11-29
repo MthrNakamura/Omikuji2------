@@ -175,10 +175,14 @@ static NSString *const _ALERT_TITLE[] =
             //正常に印刷が行われた
             if ([delegate.pError isEqualToString:@""]) {
                 
+                //印刷終了まではアプリが強制終了しないようにする
+                //delegate.networking = YES;
+
                 //クーポンを印刷する
                 [NSThread detachNewThreadSelector:@selector(PrintRasterSampleReceipt3InchWithPortname) toTarget:self withObject:nil];
+
                 
-                
+                //印刷終了後は強制終了してもいい
             }
             //印刷にエラーがあった
             else {
@@ -270,6 +274,11 @@ static NSString *const _ALERT_TITLE[] =
     AsyncURLConnection *conn = [[AsyncURLConnection alloc]initWithRequest:request timeoutSec:TIMEOUT_INTERVAL completeBlock:^(AsyncURLConnection *conn, NSData *data) {
         NSLog(@"成功");
         
+        
+        NSLog(@"status: %d", ((NSHTTPURLResponse *)conn.response).statusCode);
+        NSLog(@"data: %@", [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
+        
+        
         // ステータスコードの取得
         auto http_response = (NSHTTPURLResponse *)conn.response;
         if (![self checkStatusCode:http_response status:STATUS_COMPLETE])
@@ -315,25 +324,29 @@ static NSString *const _ALERT_TITLE[] =
     
     AsyncURLConnection *conn = [[AsyncURLConnection alloc]initWithRequest:request timeoutSec:TIMEOUT_INTERVAL completeBlock:^(AsyncURLConnection *conn, NSData *data) {
         
-        NSLog(@"四杯");
         
         // ステータスコードの取得
         auto http_response = (NSHTTPURLResponse *)conn.response;
         [self checkStatusCode:http_response status:STATUS_COMPLETE];
         
         
+        
     } progressBlock:nil errorBlock:^(id conn, NSError *error) {
         if (error.code == NSURLErrorTimedOut) {
             
+            
             //タイムアウト
             AlertUtil::showAlert(_ALERT_TITLE[STATUS_COMPLETE], AlertUtil::TIMEDOUT);
-            //[timer invalidate];
+            
             
         }
         else {
+            
+            
             //通信エラー
             AlertUtil::showAlert(_ALERT_TITLE[STATUS_COMPLETE], AlertUtil::NETWORK_ERROR);
-            //[timer invalidate];
+            
+            
         }
     }];
     
@@ -436,15 +449,30 @@ static NSString *const _ALERT_TITLE[] =
     [request setHTTPMethod:@"POST"];
 
     
+    //成功パラメーターを送信
+    if (!printErrorCode) {
+        //パラメータを設定
+        NSArray *vals = [NSArray arrayWithObjects:delegate.qrResult, [NSNumber numberWithInteger:printResult], nil];
+        NSArray *keys = [NSArray arrayWithObjects:@"qrData", @"printResult", nil];
+        NSDictionary *param = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
+        NSError *error;
+        NSData *json = [NSJSONSerialization dataWithJSONObject:param options:0 error:&error];
+        [request setHTTPBody:json];
+        
+        return request;
+    }
+    //失敗パラメーターを送信
     //パラメータを設定
-    NSArray *vals = [NSArray arrayWithObjects:delegate.qrResult, [NSNumber numberWithInteger:printResult], nil];
-    NSArray *keys = [NSArray arrayWithObjects:@"qrData", @"printResult", nil];
+    NSArray *vals = [NSArray arrayWithObjects:delegate.qrResult, [NSNumber numberWithInteger:printResult], printErrorCode, nil];
+    NSArray *keys = [NSArray arrayWithObjects:@"qrData", @"printResult", @"printErrorCode", nil];
     NSDictionary *param = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
     NSError *error;
     NSData *json = [NSJSONSerialization dataWithJSONObject:param options:0 error:&error];
     [request setHTTPBody:json];
     
     return request;
+    
+    
 }
 
 - (BOOL)isFinishedPrintingSafely
@@ -477,31 +505,42 @@ static NSString *const _ALERT_TITLE[] =
             delegate.printErrorUrl = delegate.drawerOpenURL;
             condition = _PRINTER_STATUS[STATUS_DRAWEROPEN];
         }
+        //カッターエラー
         else if (status.cutterError == SM_TRUE) {
             delegate.printErrorUrl = delegate.failedCutURL;
             condition = _PRINTER_STATUS[STATUS_MISCUTTING];
         }
+        //ヘッダーオーバーヒート
         else if (status.overTemp == SM_TRUE)
         {
             delegate.printErrorUrl = delegate.headerTempURL;
             condition = _PRINTER_STATUS[STATUS_HOVERHEAT];
         }
+        //紙詰まり
         else if (status.presenterPaperJamError == SM_TRUE) {
             delegate.printErrorUrl = delegate.paperJammedURL;
             condition = _PRINTER_STATUS[STATUS_PAPERJAMMED];
         }
+        //異常な量のデータをプリンタが受信
         else if (status.receiveBufferOverflow  == SM_TRUE) {
             delegate.printErrorUrl = delegate.unusualDataURL;
             condition = _PRINTER_STATUS[STATUS_UNUSUALDATA];
         }
+        //電源異常
         else if (status.voltageError  == SM_TRUE) {
             delegate.printErrorUrl = delegate.powerErrorURL;
             condition = _PRINTER_STATUS[STATUS_POWERERROR];
         }
+        //紙切れ
         else if (status.receiptPaperEmpty == SM_TRUE ) {
             delegate.printErrorUrl = delegate.paperEmptyURL;
             condition = _PRINTER_STATUS[STATUS_PAPEREMPTY];
         }
+        //紙が入っていない
+//        else if (status.presenterState == '\0') {
+//            delegate.printErrorUrl = delegate.paperEmptyURL;
+//            condition = _PRINTER_STATUS[STATUS_PAPEREMPTY];
+//        }
         
     }
     @catch (PortException *e) {
@@ -570,6 +609,7 @@ static NSString *const _ALERT_TITLE[] =
     }
     @catch (PortException *exception)
     {
+        
         AlertUtil::showAlert(_ALERT_TITLE[STATUS_PRINT], @"タイムアウトです。再度お試しください。");
         
         return NO;
@@ -636,6 +676,9 @@ static NSString *const _ALERT_TITLE[] =
     else {
         [self miscomplete:@"999"];
     }
+    
+    //印刷が終了したらアプリを強制終了してもいい
+    //delegate.networking = NO;
 }
 
 

@@ -12,7 +12,7 @@
 
 
 
-@interface ViewController : UIViewController <ZXCaptureDelegate, UIWebViewDelegate>
+@interface ViewController : UIViewController <ZXCaptureDelegate, UIWebViewDelegate, UIAlertViewDelegate>
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
 @property AppDelegate *delegate;
 

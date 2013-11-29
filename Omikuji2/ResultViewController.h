@@ -13,7 +13,7 @@
 
 
 
-#define TIMEOUT_TIME 20000
+#define TIMEOUT_TIME 10000
 #define DEFAULT_PORTNAME @"BT:Star Micronics"
 
 

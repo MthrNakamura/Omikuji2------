@@ -23,7 +23,6 @@ BOOL isFirstLoad;
 BOOL playMovie = NO;
 
 
-
 // --- ステータス ---
 enum STATUS : unsigned {
     STATUS_ACTION = 0 //抽選
@@ -39,7 +38,6 @@ static NSString *const _ALERT_TITLE[] =
     BOOL isViewDidAppeared;
 }
 @property (nonatomic, retain) ZXCapture *zxcapture;
-
 @end
 
 BOOL isFrontCamera = YES;
@@ -119,16 +117,8 @@ BOOL isFrontCamera = YES;
     [super viewDidAppear:animated];
     
     isViewDidAppeared = YES;
-    delegate.showingAlert = NO;
 }
 
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 0) {
-        delegate.showingAlert = NO;
-    }
-}
 
 - (void)captureResult:(ZXCapture *)capture result:(ZXResult *)result
 {
@@ -139,23 +129,11 @@ BOOL isFrontCamera = YES;
     //ネットワーク接続を確認
     if ([delegate checkNetworkStatus] == NO_NETWORK) {
         
+        // *** ネットワーク接続がない ***
+        //アラートの表示
+        AlertUtil::showAlert( _ALERT_TITLE[ STATUS_ACTION ],
+                             AlertUtil::NETWORK_ERROR );
         
-        if (!delegate.showingAlert) {
-            delegate.showingAlert = YES;
-            delegate.alertView = [[UIAlertView alloc]initWithTitle:_ALERT_TITLE[STATUS_ACTION] message:@"ネットワークに接続されていません。ネットワーク状態をお確かめください。" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [delegate.alertView show];
-            
-            //AlertUtil::showAlert(_ALERT_TITLE[STATUS_ACTION], AlertUtil::NETWORK_ERROR);
-            
-        }
-
-        
-        
-//        // *** ネットワーク接続がない ***
-//        //アラートの表示
-//        AlertUtil::showAlert( _ALERT_TITLE[ STATUS_ACTION ],
-//                             AlertUtil::NETWORK_ERROR );
-//        
         
         //スキャン再開
         [zxcapture start];
@@ -294,7 +272,7 @@ BOOL isFrontCamera = YES;
 {
     __block BOOL validQR = YES;
     
-    AsyncURLConnection *conn = [[AsyncURLConnection alloc] initWithRequest:request timeoutSec:TIMEOUT_INTERVAL_QR completeBlock:^(AsyncURLConnection *conn, NSData *data) {
+    AsyncURLConnection *conn = [[AsyncURLConnection alloc] initWithRequest:request timeoutSec:TIMEOUT_INTERVAL completeBlock:^(AsyncURLConnection *conn, NSData *data) {
         
         NSError *error = [[NSError alloc]init];
         NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
@@ -329,22 +307,12 @@ BOOL isFrontCamera = YES;
     } progressBlock:nil errorBlock:^(id conn, NSError *error) {
         if (error.code == NSURLErrorTimedOut) {
             //タイムアウト
-//            AlertUtil::showAlert(_ALERT_TITLE[STATUS_ACTION], AlertUtil::TIMEDOUT);
-            
-            // とりあえずタイムアウト時はダイアログをださない
-            NSLog( @"QRrequest >> timeout" );
+            AlertUtil::showAlert(_ALERT_TITLE[STATUS_ACTION], AlertUtil::TIMEDOUT);
             validQR = NO;
         }
         else {
             //通信エラー
-            if (!delegate.showingAlert) {
-                delegate.showingAlert = YES;
-                delegate.alertView = [[UIAlertView alloc]initWithTitle:_ALERT_TITLE[STATUS_ACTION] message:@"ネットワークに接続されていません。ネットワーク状態をお確かめください。" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                [delegate.alertView show];
-            
-                //AlertUtil::showAlert(_ALERT_TITLE[STATUS_ACTION], AlertUtil::NETWORK_ERROR);
-                
-            }
+            AlertUtil::showAlert(_ALERT_TITLE[STATUS_ACTION], AlertUtil::NETWORK_ERROR);
             validQR = NO;
         }
     }];

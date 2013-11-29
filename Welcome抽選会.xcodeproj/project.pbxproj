@@ -41,9 +41,9 @@
 		D26C6C8A18463693008EE107 /* ManagementViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = D26C6C8518463693008EE107 /* ManagementViewController.mm */; };
 		D278A67C18441F7E00CF7154 /* PrinterErrorViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = D278A67B18441F7E00CF7154 /* PrinterErrorViewController.mm */; };
 		D278A682184474FA00CF7154 /* AsyncURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = D278A681184474FA00CF7154 /* AsyncURLConnection.m */; };
-		D278A68A1844D01600CF7154 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = D278A6891844D01600CF7154 /* ViewController.mm */; };
 		D28F9A2F1846394400B77426 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D28F9A2E1846394400B77426 /* Main.storyboard */; };
 		D28F9A3118464B2700B77426 /* ResultViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = D28F9A3018464B2700B77426 /* ResultViewController.mm */; };
+		D2A1A51B1848539200530EF7 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = D2A1A51A1848539200530EF7 /* ViewController.mm */; };
 		D2B2E5FC1842C59C0018EC75 /* DejalActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B2E5FB1842C59C0018EC75 /* DejalActivityView.m */; };
 		D2B2E604184314470018EC75 /* libMBProgressHUD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D2B2E6031843141E0018EC75 /* libMBProgressHUD.a */; };
 		D2B2E609184314B50018EC75 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B2E608184314B50018EC75 /* MBProgressHUD.m */; };
@@ -146,7 +146,7 @@
 		D23A76D518197E0D00C6438F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D23A76D718197E0D00C6438F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D23A76D918197E0D00C6438F /* Welcome抽選会-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Welcome抽選会-Prefix.pch"; sourceTree = "<group>"; };
-		D23A76DA18197E0D00C6438F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		D23A76DA18197E0D00C6438F /* AppDelegate_.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate_.h; sourceTree = "<group>"; };
 		D23A76DB18197E0D00C6438F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		D23A76E018197E0D00C6438F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		D23A76E318197E0D00C6438F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -183,11 +183,13 @@
 		D278A67B18441F7E00CF7154 /* PrinterErrorViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PrinterErrorViewController.mm; sourceTree = "<group>"; };
 		D278A680184474FA00CF7154 /* AsyncURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncURLConnection.h; sourceTree = "<group>"; };
 		D278A681184474FA00CF7154 /* AsyncURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncURLConnection.m; sourceTree = "<group>"; };
-		D278A6891844D01600CF7154 /* ViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
+		D278A6891844D01600CF7154 /* ViewController_.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController_.mm; sourceTree = "<group>"; };
 		D278FE0E183F29AD00194AEC /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		D285CA8E1845E30E005F30FA /* ResultViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = ResultViewController.mm; path = Omikuji2/ResultViewController.mm; sourceTree = "<group>"; };
 		D28F9A2E1846394400B77426 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		D28F9A3018464B2700B77426 /* ResultViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ResultViewController.mm; sourceTree = "<group>"; };
+		D2A1A519184852BE00530EF7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		D2A1A51A1848539200530EF7 /* ViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
 		D2B2E5FA1842C59C0018EC75 /* DejalActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DejalActivityView.h; sourceTree = "<group>"; };
 		D2B2E5FB1842C59C0018EC75 /* DejalActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DejalActivityView.m; sourceTree = "<group>"; };
 		D2B2E5FE1843141D0018EC75 /* MBProgressHUD.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MBProgressHUD.xcodeproj; path = "../../Downloads/MBProgressHUD-master/MBProgressHUD.xcodeproj"; sourceTree = "<group>"; };
@@ -286,7 +288,7 @@
 		D23A76D118197E0C00C6438F /* Omikuji2 */ = {
 			isa = PBXGroup;
 			children = (
-				D23A76DA18197E0D00C6438F /* AppDelegate.h */,
+				D23A76DA18197E0D00C6438F /* AppDelegate_.h */,
 				D2439403183F8DDC001E3C70 /* receipt.jpg */,
 				D23A76DB18197E0D00C6438F /* AppDelegate.m */,
 				D2B2E5FA1842C59C0018EC75 /* DejalActivityView.h */,
@@ -294,9 +296,11 @@
 				D2B2E607184314B50018EC75 /* MBProgressHUD.h */,
 				D2B2E608184314B50018EC75 /* MBProgressHUD.m */,
 				D2B2E61B18437E4E0018EC75 /* icon.png */,
+				D2A1A519184852BE00530EF7 /* AppDelegate.h */,
 				D278A680184474FA00CF7154 /* AsyncURLConnection.h */,
 				D26C6C7C18463693008EE107 /* AlertUtil.hpp */,
 				D26C6C7D18463693008EE107 /* AlertUtil.mm */,
+				D2A1A51A1848539200530EF7 /* ViewController.mm */,
 				D28F9A2E1846394400B77426 /* Main.storyboard */,
 				D26C6C7E18463693008EE107 /* ConnectionUtils.hpp */,
 				D26C6C7F18463693008EE107 /* ConnectionUtils.mm */,
@@ -307,7 +311,7 @@
 				D26C6C8418463693008EE107 /* ManagementViewController.h */,
 				D26C6C8518463693008EE107 /* ManagementViewController.mm */,
 				D278A681184474FA00CF7154 /* AsyncURLConnection.m */,
-				D278A6891844D01600CF7154 /* ViewController.mm */,
+				D278A6891844D01600CF7154 /* ViewController_.mm */,
 				D23A76E018197E0D00C6438F /* ViewController.h */,
 				D23A76E318197E0D00C6438F /* Images.xcassets */,
 				D23A76D218197E0D00C6438F /* Supporting Files */,
@@ -558,6 +562,7 @@
 				D28F9A3118464B2700B77426 /* ResultViewController.mm in Sources */,
 				D278A67C18441F7E00CF7154 /* PrinterErrorViewController.mm in Sources */,
 				D2B2E5FC1842C59C0018EC75 /* DejalActivityView.m in Sources */,
+				D2A1A51B1848539200530EF7 /* ViewController.mm in Sources */,
 				D2B2E609184314B50018EC75 /* MBProgressHUD.m in Sources */,
 				D235D57B183CED3800465869 /* ConfigViewController.m in Sources */,
 				D23A76DC18197E0D00C6438F /* AppDelegate.m in Sources */,
@@ -567,7 +572,6 @@
 				D26C6C8818463693008EE107 /* ContentsUpdateManager.mm in Sources */,
 				D26C6C8A18463693008EE107 /* ManagementViewController.mm in Sources */,
 				D278A682184474FA00CF7154 /* AsyncURLConnection.m in Sources */,
-				D278A68A1844D01600CF7154 /* ViewController.mm in Sources */,
 				D26C6C8918463693008EE107 /* LoginViewController.mm in Sources */,
 				D217B927182CE0D90078CC07 /* StarBitmap.m in Sources */,
 				D2B2E60C184340E60018EC75 /* OSSViewController.m in Sources */,
@@ -713,7 +717,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tadasuke Tsumura (GU7QR7VC58)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -741,7 +745,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tadasuke Tsumura (GU7QR7VC58)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

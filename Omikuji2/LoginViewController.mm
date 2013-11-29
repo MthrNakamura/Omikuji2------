@@ -76,11 +76,14 @@ static NSString *const _LABEL_TEXT_OK[] =
     //AppDelegateを取得
     delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
+    
+    
     // 背景をクリックしたらキーボードを隠す
     UITapGestureRecognizer *rec = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                           action:@selector(hideSoftKeyboard)];
     [self.view addGestureRecognizer:rec];
     
+    //delegate.networking = NO;
     delegate.numLoop = 0;
 }
 

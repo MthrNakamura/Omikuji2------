@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#define PRODUCTION    // 本番環境?
+//#define PRODUCTION    // 本番環境?
 
 #ifdef PRODUCTION
 // 本番環境設定
@@ -23,7 +23,7 @@
 #define LOT_API @"http://mdh.fm/btapi/serial/lot/action"
 #define COMPLETE_API @"http://mdh.fm/btapi/serial/lot/complete"
 
-#define VERSION_INFO @"1.0.7"
+#define VERSION_INFO @"1.0.6"
 
 #else
 // テスト環境設定
@@ -52,8 +52,7 @@
 
 #define UPDATE_INTERVAL 3600
 
-#define TIMEOUT_INTERVAL        20
-#define TIMEOUT_INTERVAL_QR     10  // QR画面だけ変える
+#define TIMEOUT_INTERVAL 20
 
 #define TOP_FILENAME @"machiuke"
 #define QR_FILENAME  @"qr_rayer"
@@ -117,11 +116,7 @@
     int numLoop;
     NSString *pError;
     BOOL networking;
-    UIAlertView *alertView;
-    BOOL showingAlert;
 }
-@property BOOL showingAlert;
-@property (strong, nonatomic) UIAlertView *alertView;
 @property BOOL networking;
 @property (strong, nonatomic) NSString *pError;
 @property int numLoop;
