@@ -63,7 +63,6 @@ int numDownloadingImg = 0;
     
 //    NSURLCache *cache = [NSURLCache sharedURLCache];
 //    [cache removeAllCachedResponses];
-    
 }
 
 
@@ -179,6 +178,7 @@ int numDownloadingImg = 0;
     //NSFileManager *fileManager = [NSFileManager defaultManager];
     
     [imageData writeToFile:dataPath atomically:YES];
+
 }
 
 - (NSString *)convertPrintInfo2Receipt:(NSString *)printInfo
@@ -206,6 +206,9 @@ int numDownloadingImg = 0;
     //Image
     NSString *receiptString = [NSString stringWithFormat:@"<html><body style=\"width:%dpx\">%@</body></html>", RECEIPT_WIDTH1, printInfo];
     NSLog(@"print: %@", receiptString);
+    
+
+    
     return receiptString;
 }
 
@@ -225,6 +228,7 @@ int numDownloadingImg = 0;
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     
     UIGraphicsEndImageContext();
+    
     
     return image;
 }

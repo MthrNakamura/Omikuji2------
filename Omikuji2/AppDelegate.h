@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#define PRODUCTION    // 本番環境?
+//#define PRODUCTION    // 本番環境?
 
 #ifdef PRODUCTION
 // 本番環境設定
@@ -114,7 +114,6 @@
     NSString *pairingURL;
     BOOL receiptLoaded;
     NSString *qrErrorCode;
-    int numLoop;
     NSString *pError;
     BOOL networking;
     UIAlertView *alertView;
@@ -124,7 +123,6 @@
 @property (strong, nonatomic) UIAlertView *alertView;
 @property BOOL networking;
 @property (strong, nonatomic) NSString *pError;
-@property int numLoop;
 @property (strong, nonatomic) NSString *qrErrorCode;
 @property (nonatomic) BOOL receiptLoaded;
 @property (strong, nonatomic) NSString *pairingUrl;

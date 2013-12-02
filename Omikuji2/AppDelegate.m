@@ -28,7 +28,6 @@
 @synthesize printErrorUrl;
 @synthesize receiptLoaded;
 @synthesize qrErrorCode;
-@synthesize numLoop;
 @synthesize pError;
 @synthesize networking;
 @synthesize alertView;

@@ -13,9 +13,9 @@
 @interface VideoViewController : UIViewController <UIWebViewDelegate> {
     MPMoviePlayerViewController *moviePlayer;
 }
-@property AppDelegate *delegate;
-@property UIWebView *webView;
-@property UIWindow *offScreenWindow;
+@property (strong, nonatomic) AppDelegate *delegate;
+@property (strong, nonatomic) UIWebView *webView;
+@property (strong, nonatomic) UIWindow *offScreenWindow;
 
 - (void)MPMoviePlayerPlaybackDidFinishNotification;
 - (void)playMovie;

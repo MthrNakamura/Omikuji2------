@@ -195,26 +195,29 @@ static NSString *const _ALERT_TITLE[] =
     NSMutableURLRequest *request = [self createCompleteRequest:delegate.qrResult printResult:1 printErrorCode:errorCode];
     
     AsyncURLConnection *conn = [[AsyncURLConnection alloc]initWithRequest:request timeoutSec:TIMEOUT_INTERVAL completeBlock:^(AsyncURLConnection *conn, NSData *data) {
-
-        NSLog(@"before");
-        // ステータスコードの取得
-        auto http_response = (NSHTTPURLResponse *)conn.response;
-        [self checkStatusCode:http_response status:STATUS_PRINT];
-        NSLog(@"after");
+        @autoreleasepool {
+            // ステータスコードの取得
+            auto http_response = (NSHTTPURLResponse *)conn.response;
+            [self checkStatusCode:http_response status:STATUS_PRINT];
+        }
+        
         
     } progressBlock:nil errorBlock:^(id conn, NSError *error) {
-        if (error.code == NSURLErrorTimedOut) {
-            
-            //タイムアウト
-            AlertUtil::showAlert(_ALERT_TITLE[STATUS_PRINT], AlertUtil::TIMEDOUT);
-            //[timer invalidate];
-            
+        @autoreleasepool {
+            if (error.code == NSURLErrorTimedOut) {
+                
+                //タイムアウト
+                AlertUtil::showAlert(_ALERT_TITLE[STATUS_PRINT], AlertUtil::TIMEDOUT);
+                //[timer invalidate];
+                
+            }
+            else {
+                //通信エラー
+                AlertUtil::showAlert(_ALERT_TITLE[STATUS_PRINT], AlertUtil::NETWORK_ERROR);
+                //[timer invalidate];
+            }
         }
-        else {
-            //通信エラー
-            AlertUtil::showAlert(_ALERT_TITLE[STATUS_PRINT], AlertUtil::NETWORK_ERROR);
-            //[timer invalidate];
-        }
+        
     }];
     
     [conn performRequest];

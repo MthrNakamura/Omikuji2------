@@ -57,8 +57,8 @@ BOOL isFrontCamera = YES;
     
     delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    NSLog(@"[QR]numLoop: %d", delegate.numLoop);
-    delegate.numLoop++;
+    //NSLog(@"[QR]numLoop: %d", delegate.numLoop);
+    //delegate.numLoop++;
     
     self.webView.delegate = self;
     
@@ -273,48 +273,53 @@ BOOL isFrontCamera = YES;
     __block BOOL validQR = YES;
     
     AsyncURLConnection *conn = [[AsyncURLConnection alloc] initWithRequest:request timeoutSec:TIMEOUT_INTERVAL completeBlock:^(AsyncURLConnection *conn, NSData *data) {
-        
-        NSError *error = [[NSError alloc]init];
-        NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-        
-        //QRコードにエラーがないか
-        delegate.qrErrorCode = [jsonData objectForKey:@"errorCode"];
-        
-        
-        delegate.movieId = [jsonData objectForKey:@"contentsId"];
-        delegate.afterMovieURL = [jsonData objectForKey:@"nextUrl"];
-        if ([jsonData objectForKey:@"printInfo"] == [NSNull null]) {
-            delegate.printInfo = nil;
+        @autoreleasepool {
+            NSError *error = [[NSError alloc]init];
+            NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+            
+            //QRコードにエラーがないか
+            delegate.qrErrorCode = [jsonData objectForKey:@"errorCode"];
+            
+            
+            delegate.movieId = [jsonData objectForKey:@"contentsId"];
+            delegate.afterMovieURL = [jsonData objectForKey:@"nextUrl"];
+            if ([jsonData objectForKey:@"printInfo"] == [NSNull null]) {
+                delegate.printInfo = nil;
+            }
+            else {
+                delegate.printInfo = [jsonData objectForKey:@"printInfo"];
+            }
+            if ([[jsonData objectForKey:@"type"]intValue] == 0) {
+                playMovie = YES;
+                delegate.resultMovieId = [jsonData objectForKey:@"contentsId"];
+            }
+            else {
+                playMovie = NO;
+            }
+            
+            
+            // ステータスコードの取得
+            auto http_response = (NSHTTPURLResponse *)conn.response;
+            if (![self checkStatusCode:http_response status:STATUS_ACTION])
+                validQR = NO;
         }
-        else {
-            delegate.printInfo = [jsonData objectForKey:@"printInfo"];
-        }
-        if ([[jsonData objectForKey:@"type"]intValue] == 0) {
-            playMovie = YES;
-            delegate.resultMovieId = [jsonData objectForKey:@"contentsId"];
-        }
-        else {
-            playMovie = NO;
-        }
         
-       
-        // ステータスコードの取得
-        auto http_response = (NSHTTPURLResponse *)conn.response;
-        if (![self checkStatusCode:http_response status:STATUS_ACTION])
-            validQR = NO;
         
         
     } progressBlock:nil errorBlock:^(id conn, NSError *error) {
-        if (error.code == NSURLErrorTimedOut) {
-            //タイムアウト
-            AlertUtil::showAlert(_ALERT_TITLE[STATUS_ACTION], AlertUtil::TIMEDOUT);
-            validQR = NO;
+        @autoreleasepool {
+            if (error.code == NSURLErrorTimedOut) {
+                //タイムアウト
+                AlertUtil::showAlert(_ALERT_TITLE[STATUS_ACTION], AlertUtil::TIMEDOUT);
+                validQR = NO;
+            }
+            else {
+                //通信エラー
+                AlertUtil::showAlert(_ALERT_TITLE[STATUS_ACTION], AlertUtil::NETWORK_ERROR);
+                validQR = NO;
+            }
         }
-        else {
-            //通信エラー
-            AlertUtil::showAlert(_ALERT_TITLE[STATUS_ACTION], AlertUtil::NETWORK_ERROR);
-            validQR = NO;
-        }
+        
     }];
     [conn performRequest];
     

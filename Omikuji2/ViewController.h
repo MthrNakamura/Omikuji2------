@@ -7,16 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <ZXingObjC.h>
 #import "AppDelegate.h"
 
+#import <AVFoundation/AVFoundation.h>
 
 
-@interface ViewController : UIViewController <ZXCaptureDelegate, UIWebViewDelegate, UIAlertViewDelegate>
+@interface ViewController : UIViewController <AVCaptureMetadataOutputObjectsDelegate, UIWebViewDelegate, UIAlertViewDelegate>
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
-@property AppDelegate *delegate;
+@property (strong, nonatomic) AVCaptureSession *captureSession;
+@property (strong, nonatomic) AVCaptureVideoPreviewLayer *previewLayer;
+@property (strong, nonatomic) AppDelegate *delegate;
 
-- (void)readQR;
+
+- (BOOL)startCamera;
 - (NSMutableURLRequest *)createQRRequest:(NSString *)qrResult;
 - (NSDictionary *)sendQRRequestSynchronously:(NSMutableURLRequest *)request;
 
@@ -26,8 +29,4 @@
 - (void)gobackToLoginView;
 - (void)resumeQR;
 
-//ステータスコードを確認して適宜アラートを表示
-
-//- (UIImage *)imageFromWebView:(UIWebView *)wView;
-//- (UIWebView *)webViewFromString:(NSString *)receiptString;
 @end

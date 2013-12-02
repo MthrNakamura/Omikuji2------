@@ -84,7 +84,7 @@ static NSString *const _LABEL_TEXT_OK[] =
     [self.view addGestureRecognizer:rec];
     
     //delegate.networking = NO;
-    delegate.numLoop = 0;
+    //delegate.numLoop = 0;
 }
 
 // **********************************************
@@ -245,46 +245,50 @@ static NSString *const _LABEL_TEXT_OK[] =
                                     initWithRequest:request
                                          timeoutSec:TIMEOUT_INTERVAL
     completeBlock:^(AsyncURLConnection *conn, NSData *data) {
-                                    
-        // プログレスバーの非表示
-        [progress hide:YES];
-        [progress removeFromSuperview];
-        
-        // データチェック
-        ConnectionUtil::HTTP_CODE code;
-        auto response = ConnectionUtil::checkAndSerializeResponse( conn.response, data, code );
-        
-        // レスポンスが存在しなければ終了
-        if ( !response ) {
+        @autoreleasepool {
+            // プログレスバーの非表示
+            [progress hide:YES];
+            [progress removeFromSuperview];
             
-            auto atype = AlertUtil::convert( code, true );
+            // データチェック
+            ConnectionUtil::HTTP_CODE code;
+            auto response = ConnectionUtil::checkAndSerializeResponse( conn.response, data, code );
             
-            AlertUtil::showAlert( _ALERT_TITLE[ STATUS_LOGIN ], atype );
-            return;
+            // レスポンスが存在しなければ終了
+            if ( !response ) {
+                
+                auto atype = AlertUtil::convert( code, true );
+                
+                AlertUtil::showAlert( _ALERT_TITLE[ STATUS_LOGIN ], atype );
+                return;
+            }
+            
+            // ログイン情報の保存
+            [_self registLoginInfo:name
+                          passWord:password
+                          response:response];
+            
+            // コンテンツの更新
+            [self updateContents:goto_top_page];
         }
         
-        // ログイン情報の保存
-        [_self registLoginInfo:name
-                      passWord:password
-                      response:response];
-        
-        // コンテンツの更新
-        [self updateContents:goto_top_page];
     }
                                 progressBlock:nil
     errorBlock:^(AsyncURLConnection *conn, NSError *error) {
-                                    
-        // プログレスバーの非表示
-        [progress hide:YES];
-        [progress removeFromSuperview];
+        @autoreleasepool {
+            // プログレスバーの非表示
+            [progress hide:YES];
+            [progress removeFromSuperview];
+            
+            // エラーダイアログの表示
+            auto type = ( error.code==NSURLErrorTimedOut ) ? AlertUtil::TIMEDOUT
+            : AlertUtil::NETWORK_ERROR;
+            AlertUtil::showAlert( _ALERT_TITLE[ STATUS_LOGIN ], type );
+            
+            // エラーによるリセット処理
+            [self resetForError];
+        }
         
-        // エラーダイアログの表示
-        auto type = ( error.code==NSURLErrorTimedOut ) ? AlertUtil::TIMEDOUT
-                                                       : AlertUtil::NETWORK_ERROR;
-        AlertUtil::showAlert( _ALERT_TITLE[ STATUS_LOGIN ], type );
-        
-        // エラーによるリセット処理
-        [self resetForError];
     }];
     
     // 通信の開始

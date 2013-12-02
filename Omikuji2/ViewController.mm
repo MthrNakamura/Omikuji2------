@@ -38,15 +38,16 @@ static NSString *const _ALERT_TITLE[] =
 @interface ViewController () {
     BOOL isViewDidAppeared;
 }
-@property (nonatomic, retain) ZXCapture *zxcapture;
+
 
 @end
 
 BOOL isFrontCamera = YES;
 
 @implementation ViewController
-@synthesize zxcapture;
 @synthesize delegate;
+@synthesize captureSession;
+@synthesize previewLayer;
 
 - (BOOL)prefersStatusBarHidden {return YES;}
 
@@ -59,69 +60,71 @@ BOOL isFrontCamera = YES;
     
     delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    NSLog(@"[QR]numLoop: %d", delegate.numLoop);
-    delegate.numLoop++;
+    //delegate.numLoop++;
     
     self.webView.delegate = self;
     
     isFirstLoad = YES;
     
+    
+    
+    
+    
+    // カメラ画面の上に乗せるwebviewを設定
     NSString *urlString = delegate.qrURL;
     NSURL * url = [NSURL URLWithString:urlString];
     [self.webView setBackgroundColor:[UIColor clearColor]];
     [self.webView setOpaque:NO];
     [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
     
+    
+    // javascript埋め込み
     [self.webView stringByEvaluatingJavaScriptFromString:
      /* ページのスタイルを透明に指定 */
      @"document.body.style.gackgroundColor = \"transparent\";"
      /* QRコード読み込みページに遷移する関数を定義する */
      "var cameraChange = function() { window.location = \"omikuji://cameraChange\"; };"
     ];
+
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    isViewDidAppeared = NO;
+    
     
     [super viewWillDisappear:animated];
     [self.webView setDelegate:nil];
     [self.webView stopLoading];
-    
-    [zxcapture.layer removeFromSuperlayer];
-    [zxcapture setDelegate:nil];
-    [zxcapture stop];
+
+    [previewLayer setDelegate:nil];
+    [previewLayer removeFromSuperlayer];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
+    
+    
+    
     isViewDidAppeared = NO;
-    
-    //QRコード読み取り画面を表示
-    [self readQR];
-    
-    [self.view bringSubviewToFront:self.webView];
-    
-    //カメラ映像を自然にする
-    CGAffineTransform transform = CGAffineTransformMakeRotation(-M_PI_2);
-    [zxcapture setTransform:transform];
-    CGRect f = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
-    self.view.layer.frame=f;
-    zxcapture.layer.frame = f;
-    
-    [zxcapture start];
+    delegate.showingAlert = NO;
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
+    // カメラを起動
+    [self startCamera];
+    isViewDidAppeared = NO;
+    NSLog(@"start camera");
+    
+    [self.view bringSubviewToFront:self.webView];
+    
     isViewDidAppeared = YES;
-    delegate.showingAlert = NO;
 }
-
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -130,6 +133,120 @@ BOOL isFrontCamera = YES;
     }
 }
 
+// *** カメラを起動 ***
+- (BOOL)startCamera
+{
+    self.captureSession = [[AVCaptureSession alloc]init];
+    AVCaptureDevice *videoCaptureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    NSError *error = nil;
+    AVCaptureDeviceInput *videoInput = [AVCaptureDeviceInput deviceInputWithDevice:videoCaptureDevice error:&error];
+    
+    if (videoInput) {
+        [self.captureSession addInput:videoInput];
+    }
+    else {
+        NSLog(@"Error: %@", error);
+        return NO;
+    }
+    
+    AVCaptureMetadataOutput *metadataOutput = [[AVCaptureMetadataOutput alloc]init];
+    [self.captureSession addOutput:metadataOutput];
+    [metadataOutput setMetadataObjectsDelegate:self queue:dispatch_get_main_queue()];
+    [metadataOutput setMetadataObjectTypes:@[AVMetadataObjectTypeQRCode]];
+    
+    previewLayer = [[[AVCaptureVideoPreviewLayer alloc]init] initWithSession:self.captureSession];
+    previewLayer.frame = self.view.bounds;
+    previewLayer.connection.videoOrientation = AVCaptureVideoOrientationLandscapeRight;
+    [previewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
+    [self.view.layer addSublayer:previewLayer];
+    
+    [self.captureSession startRunning];
+    
+    return YES;
+}
+
+
+- (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection
+{
+    
+    
+    NSString *result = [[NSString alloc]init];
+    // QR読み取り結果を抽出
+    for(AVMetadataObject *metadataObject in metadataObjects)
+	{
+		AVMetadataMachineReadableCodeObject *readableObject = (AVMetadataMachineReadableCodeObject *)metadataObject;
+		if([metadataObject.type isEqualToString:AVMetadataObjectTypeQRCode])
+		{
+            result = readableObject.stringValue;
+            break; //結果は1つだけ利用する
+		}
+	}
+    
+    
+    
+    // ビューが表示されていなければ無視
+    if ( !isViewDidAppeared ) {
+        return ;
+    }
+    
+    // カメラを停止
+    [self.captureSession stopRunning];
+    
+    //ネットワーク接続を確認
+    if ([delegate checkNetworkStatus] == NO_NETWORK) {
+        
+        
+        if (!delegate.showingAlert) {
+            delegate.showingAlert = YES;
+            delegate.alertView = [[UIAlertView alloc]initWithTitle:_ALERT_TITLE[STATUS_ACTION] message:@"ネットワークに接続されていません。ネットワーク状態をお確かめください。" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [delegate.alertView show];
+            
+            //AlertUtil::showAlert(_ALERT_TITLE[STATUS_ACTION], AlertUtil::NETWORK_ERROR);
+            
+        }
+        return ;
+    }
+    
+    // サーバーに結果を送信し確認
+    NSMutableURLRequest *request = [self createQRRequest:result];
+    
+    if (![self sendQRRequestAsyncronously:request]) {
+        [self.captureSession startRunning];
+        return ; //QR読み込み再開
+    }
+    
+    delegate.qrResult = result;
+    
+    
+    if (![delegate.qrErrorCode isEqualToString:@"0000"]) {
+        //QRコードエラーページに遷移
+        ResultViewController *resultView = [self.storyboard instantiateViewControllerWithIdentifier:@"ResultView"];
+        [self presentViewController:resultView animated:YES completion:nil];
+        return ;
+    }
+    
+    
+    CFStringTransform((CFMutableStringRef)delegate.printInfo, NULL, CFSTR("Any-Hex/Java"), YES);
+    
+    //動画を再生
+    //再生する動画のIDを取得
+    VideoViewController *videoView = [self.storyboard instantiateViewControllerWithIdentifier:@"VideoView"];
+    [self presentViewController:videoView animated:YES completion:nil];
+    
+    
+    //次のアクションを決定
+    if ([delegate.qrErrorCode isEqualToString:@"0000"]) {
+        //動画を再生
+        //再生する動画のIDを取得
+        VideoViewController *videoView = [self.storyboard instantiateViewControllerWithIdentifier:@"VideoView"];
+        
+        [self presentViewController:videoView animated:YES completion:nil];
+    }
+    
+    
+    
+}
+/*
 - (void)captureResult:(ZXCapture *)capture result:(ZXResult *)result
 {
     // ビューが表示されていなければ無視
@@ -158,7 +275,7 @@ BOOL isFrontCamera = YES;
 //        
         
         //スキャン再開
-        [zxcapture start];
+        //[zxcapture start];
         return ;
     }
     
@@ -196,18 +313,7 @@ BOOL isFrontCamera = YES;
         VideoViewController *videoView = [self.storyboard instantiateViewControllerWithIdentifier:@"VideoView"];
         [self presentViewController:videoView animated:YES completion:nil];
     }
-}
-
-- (void)readQR
-{
-    zxcapture = [[ZXCapture alloc] init];
-    zxcapture.delegate = self;
-    
-    //正面カメラを使う
-    zxcapture.camera = (isFrontCamera)? zxcapture.front:zxcapture.back;
-    zxcapture.layer.frame = self.view.bounds;
-    [self.view.layer addSublayer:zxcapture.layer];
-}
+}*/
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
@@ -230,7 +336,7 @@ BOOL isFrontCamera = YES;
         if ([url isEqualToString:@"cameraChange"]) {
             //カメラを切り替える
             isFrontCamera = !isFrontCamera;
-            zxcapture.camera = (isFrontCamera)? zxcapture.front:zxcapture.back;
+            //zxcapture.camera = (isFrontCamera)? zxcapture.front:zxcapture.back;
         }
         return NO;
     }
@@ -243,6 +349,7 @@ BOOL isFrontCamera = YES;
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    NSLog(@"めもりがやばいいいいい");
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
@@ -287,6 +394,8 @@ BOOL isFrontCamera = YES;
     
     [request setHTTPBody:json];
     
+    
+    
     return request;
 }
 
@@ -295,58 +404,63 @@ BOOL isFrontCamera = YES;
     __block BOOL validQR = YES;
     
     AsyncURLConnection *conn = [[AsyncURLConnection alloc] initWithRequest:request timeoutSec:TIMEOUT_INTERVAL_QR completeBlock:^(AsyncURLConnection *conn, NSData *data) {
-        
-        NSError *error = [[NSError alloc]init];
-        NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-        
-        //QRコードにエラーがないか
-        delegate.qrErrorCode = [jsonData objectForKey:@"errorCode"];
-        
-        
-        delegate.movieId = [jsonData objectForKey:@"contentsId"];
-        delegate.afterMovieURL = [jsonData objectForKey:@"nextUrl"];
-        if ([jsonData objectForKey:@"printInfo"] == [NSNull null]) {
-            delegate.printInfo = nil;
+        @autoreleasepool {
+            NSError *error = [[NSError alloc]init];
+            NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+            
+            //QRコードにエラーがないか
+            delegate.qrErrorCode = [jsonData objectForKey:@"errorCode"];
+            
+            
+            delegate.movieId = [jsonData objectForKey:@"contentsId"];
+            delegate.afterMovieURL = [jsonData objectForKey:@"nextUrl"];
+            if ([jsonData objectForKey:@"printInfo"] == [NSNull null]) {
+                delegate.printInfo = nil;
+            }
+            else {
+                delegate.printInfo = [jsonData objectForKey:@"printInfo"];
+            }
+            if ([[jsonData objectForKey:@"type"]intValue] == 0) {
+                playMovie = YES;
+                delegate.resultMovieId = [jsonData objectForKey:@"contentsId"];
+            }
+            else {
+                playMovie = NO;
+            }
+            
+            
+            // ステータスコードの取得
+            auto http_response = (NSHTTPURLResponse *)conn.response;
+            if (![self checkStatusCode:http_response status:STATUS_ACTION])
+                validQR = NO;
         }
-        else {
-            delegate.printInfo = [jsonData objectForKey:@"printInfo"];
-        }
-        if ([[jsonData objectForKey:@"type"]intValue] == 0) {
-            playMovie = YES;
-            delegate.resultMovieId = [jsonData objectForKey:@"contentsId"];
-        }
-        else {
-            playMovie = NO;
-        }
         
-       
-        // ステータスコードの取得
-        auto http_response = (NSHTTPURLResponse *)conn.response;
-        if (![self checkStatusCode:http_response status:STATUS_ACTION])
-            validQR = NO;
         
         
     } progressBlock:nil errorBlock:^(id conn, NSError *error) {
-        if (error.code == NSURLErrorTimedOut) {
-            //タイムアウト
-//            AlertUtil::showAlert(_ALERT_TITLE[STATUS_ACTION], AlertUtil::TIMEDOUT);
-            
-            // とりあえずタイムアウト時はダイアログをださない
-            NSLog( @"QRrequest >> timeout" );
-            validQR = NO;
-        }
-        else {
-            //通信エラー
-            if (!delegate.showingAlert) {
-                delegate.showingAlert = YES;
-                delegate.alertView = [[UIAlertView alloc]initWithTitle:_ALERT_TITLE[STATUS_ACTION] message:@"ネットワークに接続されていません。ネットワーク状態をお確かめください。" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                [delegate.alertView show];
-            
-                //AlertUtil::showAlert(_ALERT_TITLE[STATUS_ACTION], AlertUtil::NETWORK_ERROR);
+        @autoreleasepool {
+            if (error.code == NSURLErrorTimedOut) {
+                //タイムアウト
+                //            AlertUtil::showAlert(_ALERT_TITLE[STATUS_ACTION], AlertUtil::TIMEDOUT);
                 
+                // とりあえずタイムアウト時はダイアログをださない
+                NSLog( @"QRrequest >> timeout" );
+                validQR = NO;
             }
-            validQR = NO;
+            else {
+                //通信エラー
+                if (!delegate.showingAlert) {
+                    delegate.showingAlert = YES;
+                    delegate.alertView = [[UIAlertView alloc]initWithTitle:_ALERT_TITLE[STATUS_ACTION] message:@"ネットワークに接続されていません。ネットワーク状態をお確かめください。" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                    [delegate.alertView show];
+                    
+                    //AlertUtil::showAlert(_ALERT_TITLE[STATUS_ACTION], AlertUtil::NETWORK_ERROR);
+                    
+                }
+                validQR = NO;
+            }
         }
+        
     }];
     [conn performRequest];
     

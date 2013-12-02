@@ -219,29 +219,34 @@ static AppDelegate *delegate;
                                                                 timeoutSec:TIMEOUT_INTERVAL
     // 完了時処理
     completeBlock:^(AsyncURLConnection *conn, NSData *data) {
-        
-        // レスポンスコードに応じたダイアログ表示
-        switch (conn.response.statusCode) {
-            case 400:
-                AlertUtil::showAlert( @"ログアウト", AlertUtil::INVALID_PARAM );
-                break;
-            case 500:
-                AlertUtil::showAlert( @"ログアウト", AlertUtil::SERVER_ERROR );
-                break;
-            default:
-                break;
+        @autoreleasepool {
+            // レスポンスコードに応じたダイアログ表示
+            switch (conn.response.statusCode) {
+                case 400:
+                    AlertUtil::showAlert( @"ログアウト", AlertUtil::INVALID_PARAM );
+                    break;
+                case 500:
+                    AlertUtil::showAlert( @"ログアウト", AlertUtil::SERVER_ERROR );
+                    break;
+                default:
+                    break;
+            }
+            
+            [progress hide:YES];
+            [progress removeFromSuperview];
         }
         
-        [progress hide:YES];
-        [progress removeFromSuperview];
         
     }
     progressBlock:nil
                                 
     // エラー時処理
     errorBlock:^(AsyncURLConnection *conn, NSError *error) {
-        [progress hide:YES];
-        [progress removeFromSuperview];
+        @autoreleasepool {
+            [progress hide:YES];
+            [progress removeFromSuperview];
+        }
+        
         
     }];
 

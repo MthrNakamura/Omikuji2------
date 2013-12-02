@@ -12,7 +12,6 @@
 
 
 
-
 #define TIMEOUT_TIME 10000
 #define DEFAULT_PORTNAME @"BT:Star Micronics"
 
@@ -23,7 +22,7 @@
     NSString *result;
 }
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
-@property AppDelegate *delegate;
+@property (strong, nonatomic) AppDelegate *delegate;
 
 - (void)PrintRasterSampleReceipt3InchWithPortname;//:(NSString *)portName portSettings:(NSString *)portSettings;
 

@@ -52,14 +52,14 @@ float loadedBytes;
         delegate.qrErrorMsg = nil;
     }
     
-    NSLog(@"numloop: %d", delegate.numLoop);
-    if (delegate.numLoop >= NUM_LOOP) {
-        
-//        while (delegate.networking)
-//            usleep(100);
-        exit(0);
-        return ;
-    }
+    //NSLog(@"numloop: %d", delegate.numLoop);
+//    if (delegate.numLoop >= NUM_LOOP) {
+//        
+////        while (delegate.networking)
+////            usleep(100);
+//        exit(0);
+//        return ;
+//    }
     
     //TOP画面のwebページを表示
     self.webView.delegate = self;
@@ -397,6 +397,7 @@ float loadedBytes;
     //GETに設定
     [request setHTTPMethod:@"GET"];
     
+    
     return request;
 }
 
@@ -423,6 +424,7 @@ float loadedBytes;
     if (responseData) {
         NSError *error;
         [responseData writeToFile:storePath options:NSDataWritingAtomic error:&error];
+        
         if (error != nil) {
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"ダウンロード失敗" message:@"ダウンロードに失敗しました" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alert show];

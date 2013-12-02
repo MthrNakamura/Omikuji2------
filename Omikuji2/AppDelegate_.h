@@ -113,13 +113,11 @@
     NSString *pairingURL;
     BOOL receiptLoaded;
     NSString *qrErrorCode;
-    int numLoop;
     NSString *pError;
     BOOL networking;
 }
 @property BOOL networking;
 @property (strong, nonatomic) NSString *pError;
-@property int numLoop;
 @property (strong, nonatomic) NSString *qrErrorCode;
 @property (nonatomic) BOOL receiptLoaded;
 @property (strong, nonatomic) NSString *pairingUrl;

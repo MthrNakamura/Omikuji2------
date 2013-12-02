@@ -142,31 +142,35 @@ NSDictionary* ContentsUpdateManager::getContentsList(UIViewController *vc, Alert
     
     // 通信完了時
     completeBlock:^(AsyncURLConnection *conn, NSData *data) {
-    
-        ConnectionUtil::HTTP_CODE code;
+        @autoreleasepool {
+            ConnectionUtil::HTTP_CODE code;
+            
+            // コンテンツリストの保持
+            APP_DEL.contentsList = ConnectionUtil::checkAndSerializeResponse( conn.response,
+                                                                             data, code );
+            
+            // アラートタイプの取得
+            atype = AlertUtil::convert( code, false );
+            
+            // プログレスバーの非表示
+            [progress hide:YES];
+            [progress removeFromSuperview];
+        }
         
-        // コンテンツリストの保持
-        APP_DEL.contentsList = ConnectionUtil::checkAndSerializeResponse( conn.response,
-                                                          data, code );
-       
-        // アラートタイプの取得
-        atype = AlertUtil::convert( code, false );
-        
-        // プログレスバーの非表示
-        [progress hide:YES];
-        [progress removeFromSuperview];
     }
     progressBlock:nil
 
     // エラー発生時
     errorBlock:^(AsyncURLConnection *conn, NSError *error) {
-    
-        // プログレスバーの非表示
-        [progress hide:YES];
-        [progress removeFromSuperview];
+        @autoreleasepool {
+            // プログレスバーの非表示
+            [progress hide:YES];
+            [progress removeFromSuperview];
+            
+            atype = ( error.code==NSURLErrorTimedOut ) ? AlertUtil::TIMEDOUT
+            : AlertUtil::NETWORK_ERROR;
+        }
         
-        atype = ( error.code==NSURLErrorTimedOut ) ? AlertUtil::TIMEDOUT
-                                                   : AlertUtil::NETWORK_ERROR;
     } ];
     
     // 同期通信の実行
@@ -265,6 +269,8 @@ void ContentsUpdateManager::addContent2List(NSDictionary* content, NSString* con
     if ( new_content ) {
         [contents_list setObject:new_content forKey:content_id];
     }
+    
+    
 }
 
 // +++++++++++++++++++++++++++++++++++++++++++++++
@@ -294,6 +300,8 @@ bool ContentsUpdateManager::downloadContentsShouldBeUpdated(UIViewController *vc
             // プログレスバーの非表示
             [progress hide:YES];
             [progress removeFromSuperview];
+            
+            
             
             return false;
         }
@@ -367,6 +375,7 @@ bool ContentsUpdateManager::downloadContentsShouldBeUpdated(UIViewController *vc
     // プログレスバーの非表示
     [progress hide:YES];
     [progress removeFromSuperview];
+    
     
     return true;
 }
@@ -460,35 +469,37 @@ bool ContentsUpdateManager::downloadMultimediaData(NSString* content_id, AlertUt
 
     // 通信成功時
     completeBlock:^(AsyncURLConnection *conn, NSData *data) {
-    
-        // レスポンスコードの確認
-        ConnectionUtil::HTTP_CODE code;
-        auto http_response = static_cast< NSHTTPURLResponse* >( conn.response );
-        if ( !ConnectionUtil::checkStatusCode( http_response, code ) ) {
-            atype = AlertUtil::convert( code, false );
-            return;
+        @autoreleasepool {
+            // レスポンスコードの確認
+            ConnectionUtil::HTTP_CODE code;
+            auto http_response = static_cast< NSHTTPURLResponse* >( conn.response );
+            if ( !ConnectionUtil::checkStatusCode( http_response, code ) ) {
+                atype = AlertUtil::convert( code, false );
+                return;
+            }
+            
+            // 動画保存用パスの生成
+            auto movie_path = [NSString stringWithFormat:@"%@.mp4", content_id];
+            auto store_path = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:movie_path];
+            
+            // データの保存
+            NSError *error = nil;
+            [data writeToFile:store_path
+                      options:NSDataWritingAtomic
+                        error:&error];
+            
+            result = true;
         }
         
-        // 動画保存用パスの生成
-        auto movie_path = [NSString stringWithFormat:@"%@.mp4", content_id];
-        auto store_path = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:movie_path];
-        
-        // データの保存
-        NSError *error = nil;
-        [data writeToFile:store_path
-                  options:NSDataWritingAtomic
-                    error:&error];
-        
-        result = true;
     }
     progressBlock:nil
     
     // 通信失敗時
     errorBlock:^(AsyncURLConnection *conn, NSError *error) {
-    
-        atype = ( error.code==NSURLErrorTimedOut ) ? AlertUtil::TIMEDOUT
-                                                   : AlertUtil::NETWORK_ERROR;
-        
+        @autoreleasepool {
+            atype = ( error.code==NSURLErrorTimedOut ) ? AlertUtil::TIMEDOUT
+            : AlertUtil::NETWORK_ERROR;
+        }
     } ];
     
     // 同期通信の開始
