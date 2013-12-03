@@ -25,7 +25,6 @@
 		D23A771618197E6100C6438F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23A771518197E6100C6438F /* AVFoundation.framework */; };
 		D23A772218199CD100C6438F /* TopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D23A772118199CD100C6438F /* TopViewController.m */; };
 		D23A77281819A50700C6438F /* VideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D23A77271819A50700C6438F /* VideoViewController.m */; };
-		D2439404183F8DDC001E3C70 /* receipt.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D2439403183F8DDC001E3C70 /* receipt.jpg */; };
 		D24AA1F1182107E500231506 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D24AA1F0182107E500231506 /* ExternalAccessory.framework */; };
 		D26C6C8618463693008EE107 /* AlertUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = D26C6C7D18463693008EE107 /* AlertUtil.mm */; };
 		D26C6C8718463693008EE107 /* ConnectionUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = D26C6C7F18463693008EE107 /* ConnectionUtils.mm */; };
@@ -107,7 +106,6 @@
 		D23A77261819A50700C6438F /* VideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoViewController.h; sourceTree = "<group>"; };
 		D23A77271819A50700C6438F /* VideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoViewController.m; sourceTree = "<group>"; };
 		D23A772B1819AC6D00C6438F /* ResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultViewController.h; sourceTree = "<group>"; };
-		D2439403183F8DDC001E3C70 /* receipt.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = receipt.jpg; sourceTree = "<group>"; };
 		D24AA1F0182107E500231506 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		D26C6C7C18463693008EE107 /* AlertUtil.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AlertUtil.hpp; sourceTree = "<group>"; };
 		D26C6C7D18463693008EE107 /* AlertUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AlertUtil.mm; sourceTree = "<group>"; };
@@ -123,7 +121,6 @@
 		D278A67B18441F7E00CF7154 /* PrinterErrorViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PrinterErrorViewController.mm; sourceTree = "<group>"; };
 		D278A680184474FA00CF7154 /* AsyncURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncURLConnection.h; sourceTree = "<group>"; };
 		D278A681184474FA00CF7154 /* AsyncURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncURLConnection.m; sourceTree = "<group>"; };
-		D278A6891844D01600CF7154 /* ViewController_.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController_.mm; sourceTree = "<group>"; };
 		D278FE0E183F29AD00194AEC /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		D285CA8E1845E30E005F30FA /* ResultViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ResultViewController.mm; sourceTree = "<group>"; };
 		D28F9A2E1846394400B77426 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -221,7 +218,6 @@
 			isa = PBXGroup;
 			children = (
 				D23A76DA18197E0D00C6438F /* AppDelegate_.h */,
-				D2439403183F8DDC001E3C70 /* receipt.jpg */,
 				D23A76DB18197E0D00C6438F /* AppDelegate.m */,
 				D2B2E5FA1842C59C0018EC75 /* DejalActivityView.h */,
 				D2B2E5FB1842C59C0018EC75 /* DejalActivityView.m */,
@@ -230,6 +226,7 @@
 				D2B2E608184314B50018EC75 /* MBProgressHUD.m */,
 				D2B2E61B18437E4E0018EC75 /* icon.png */,
 				D2A1A519184852BE00530EF7 /* AppDelegate.h */,
+				D278A681184474FA00CF7154 /* AsyncURLConnection.m */,
 				D278A680184474FA00CF7154 /* AsyncURLConnection.h */,
 				D26C6C7C18463693008EE107 /* AlertUtil.hpp */,
 				D26C6C7D18463693008EE107 /* AlertUtil.mm */,
@@ -242,15 +239,13 @@
 				D26C6C8318463693008EE107 /* LoginViewController.mm */,
 				D26C6C8418463693008EE107 /* ManagementViewController.h */,
 				D26C6C8518463693008EE107 /* ManagementViewController.mm */,
-				D278A681184474FA00CF7154 /* AsyncURLConnection.m */,
-				D278A6891844D01600CF7154 /* ViewController_.mm */,
 				D2A1A51A1848539200530EF7 /* ViewController.mm */,
 				D23A76E018197E0D00C6438F /* ViewController.h */,
 				D23A76E318197E0D00C6438F /* Images.xcassets */,
 				D23A76D218197E0D00C6438F /* Supporting Files */,
 				D23A772018199CD100C6438F /* TopViewController.h */,
-				D23A77261819A50700C6438F /* VideoViewController.h */,
 				D23A772118199CD100C6438F /* TopViewController.m */,
+				D23A77261819A50700C6438F /* VideoViewController.h */,
 				D23A77271819A50700C6438F /* VideoViewController.m */,
 				D28F9A3018464B2700B77426 /* ResultViewController.mm */,
 				D2B2E62018437ED50018EC75 /* Reachability.h */,
@@ -414,7 +409,6 @@
 				D23A76E418197E0D00C6438F /* Images.xcassets in Resources */,
 				D28F9A2F1846394400B77426 /* Main.storyboard in Resources */,
 				D23A76D618197E0D00C6438F /* InfoPlist.strings in Resources */,
-				D2439404183F8DDC001E3C70 /* receipt.jpg in Resources */,
 				D2B2E61C18437E4E0018EC75 /* icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
